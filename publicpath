@@ -1,0 +1,37 @@
+https://github.com/dusterio/lumen-passport/issues/78
+
+https://github.com/dusterio/lumen-passport/issues/78#issuecomment-381710840
+
+You can add helpers folder in **app** folder and add helpers.php file **app/helpers/helpers.php**
+inside helpers.php add
+
+```
+<?php
+if ( ! function_exists('config_path'))
+{
+    /**
+     * Get the configuration path.
+     *
+     * @param  string $path
+     * @return string
+     */
+    function config_path($path = '')
+    {
+        return app()->basePath() . '/config' . ($path ? '/' . $path : $path);
+    }
+}
+```
+
+then add this to composer.json
+
+```
+
+"autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        },
+        "files": [
+            "app/helpers/helpers.php"
+        ]
+    },
+```
